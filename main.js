@@ -5,10 +5,18 @@
 let shoppingCartArray = [];
 let total = 0;
 let productContainer = document.querySelector('.shop-items');
-// let addBtns = document.querySelectorAll('.shop-item-button');
+
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'f3cdceacf6msh71c0e4cff5be441p15ed62jsnf06564818a72',
+		'X-RapidAPI-Host': 'books39.p.rapidapi.com'
+	}
+};
 
 // Peticion de productos al servidor
-let res = await fetch('https://api.escuelajs.co/api/v1/products')
+let res = await fetch('https://books39.p.rapidapi.com/CZFA4F/books', options)
 let data = await res.json()
 
 // limitados a 4 productos
@@ -20,11 +28,12 @@ console.log(productsArray)
 
 productsArray.forEach(product => {
     productContainer.innerHTML += 
-    `<div class="shop-item" id="${product.id}">
-    <span class="shop-item-title">${product.title}</span>
-    <img class="shop-item-image" src="${product.images[0]}">
+    `<div class="shop-item">
+    <span class="shop-item-title">${product.TITLE}</span>
+    <img class="shop-item-image" src="./Images/libro.jpg">
+    <p class="shop-item-author">${product.AUTHOR}</p>
     <div class="shop-item-details">
-        <span class="shop-item-price">$${product.price}</span>
+        <span class="shop-item-price">$6.99</span>
         <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
     </div>
     </div>`
@@ -45,7 +54,8 @@ addBtns.forEach(btn=>{
         console.log(actualID);
 
         // con el Id encontrar objeto actual 
-        let actualProduct = productsArray.find(item =>)
+        let actualProduct = productsArray.find(item => item.id == actualID)
+        //  let actualProduct = productsArray.find(item => );
         // agregrar el producto al arreglo del carro 
 
 
@@ -53,7 +63,7 @@ addBtns.forEach(btn=>{
                 <div class="cart-row">
                     <div class="cart-item cart-column">
                         <img class="cart-item-image" src="./Images/shirt.jpg" width="100" height="100">
-                        <span class="cart-item-title">Shirt</span>
+                        <span class="cart-item-title">$${actualProduct.TITLE}</span>
                     </div>
                     <span class="cart-price cart-column">$19.99</span>
                     <div class="cart-quantity cart-column">
