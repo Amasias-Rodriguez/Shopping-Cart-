@@ -1,4 +1,6 @@
-
+// fetch('https://api.escuelajs.co/api/v1/products')
+// .then(res => res.json())
+// .then()
 
 let shoppingCartArray = [];
 let total = 0;
@@ -43,7 +45,7 @@ addBtns.forEach(btn=>{
         console.log(actualID);
 
         // con el Id encontrar objeto actual 
-
+        let actualProduct = productsArray.find(item =>)
         // agregrar el producto al arreglo del carro 
 
 
