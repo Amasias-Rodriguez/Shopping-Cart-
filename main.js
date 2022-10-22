@@ -5,6 +5,7 @@
 let shoppingCartArray = [];
 let total = 0;
 let productContainer = document.querySelector('.shop-items');
+let totalElement = document.querySelector('.cart-total-title');
 
 
 const options = {
@@ -55,10 +56,20 @@ addBtns.forEach(btn=>{
 
         // con el Id encontrar objeto actual 
         let actualProduct = productsArray.find(item => item.id == actualID)
-        //  let actualProduct = productsArray.find(item => );
-        // agregrar el producto al arreglo del carro 
+        actualProduct.quantity = 1;
+        console.log(actualProduct.id)
+      
+        //  preguntar si el product que estoy agregando ya existe );
+       if(shoppingCartArray.includes(actualProduct)){
+        actualProduct.quantity++;
+       }else{
+        shoppingCartArray.push(actualProduct)
+       }
 
+        console.log(shoppingCartArray)
 
+          // agregrar el producto al arreglo del carro 
+        cartContainer.innerHTML = '';
         cartContainer.innerHTML += `
                 <div class="cart-row">
                     <div class="cart-item cart-column">
@@ -67,16 +78,23 @@ addBtns.forEach(btn=>{
                     </div>
                     <span class="cart-price cart-column">$${actualProduct.YEAR}</span>
                     <div class="cart-quantity cart-column">
-                        <input class="cart-quantity-input" min="1" type="number" value="1">
+                        <input class="cart-quantity-input" min="1" type="number" value="$${actualProduct.YEAR}">
                         <button class="btn btn-danger" type="button">REMOVE</button>
                     </div>
                 </div>`
+
+                // actualizar el valor total
+
+                total = getTotal()
     });
 });
 
 function getTotal(){
     let sumTotal
-    cartContainer.reduce( (sum, item)=>{
-        sumTotal = sum + item.
-    } , 0)
+    let total = shoppingCartArray.reduce( (sum, item)=>{
+        sumTotal = sum +item.quantity*item.YEAR
+        return sumTotal
+    } , 0);
+    totalElement.innerText = `$${total}`
+
 }
