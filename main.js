@@ -28,12 +28,12 @@ console.log(productsArray)
 
 productsArray.forEach(product => {
     productContainer.innerHTML += 
-    `<div class="shop-item">
+    `<div class="shop-item" id="${product.id}">
     <span class="shop-item-title">${product.TITLE}</span>
     <img class="shop-item-image" src="./Images/libro.jpg">
     <p class="shop-item-author">${product.AUTHOR}</p>
     <div class="shop-item-details">
-        <span class="shop-item-price">$6.99</span>
+        <span class="shop-item-price">$${product.YEAR}</span>
         <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
     </div>
     </div>`
@@ -62,10 +62,10 @@ addBtns.forEach(btn=>{
         cartContainer.innerHTML += `
                 <div class="cart-row">
                     <div class="cart-item cart-column">
-                        <img class="cart-item-image" src="./Images/shirt.jpg" width="100" height="100">
-                        <span class="cart-item-title">$${actualProduct.TITLE}</span>
+                        <img class="cart-item-image" src="./Images/libro.jpg" width="100" height="100">
+                        <span class="cart-item-title">${actualProduct.TITLE}</span>
                     </div>
-                    <span class="cart-price cart-column">$19.99</span>
+                    <span class="cart-price cart-column">$${actualProduct.YEAR}</span>
                     <div class="cart-quantity cart-column">
                         <input class="cart-quantity-input" min="1" type="number" value="1">
                         <button class="btn btn-danger" type="button">REMOVE</button>
@@ -73,3 +73,10 @@ addBtns.forEach(btn=>{
                 </div>`
     });
 });
+
+function getTotal(){
+    let sumTotal
+    cartContainer.reduce( (sum, item)=>{
+        sumTotal = sum + item.
+    } , 0)
+}
