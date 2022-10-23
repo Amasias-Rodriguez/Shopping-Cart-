@@ -60,11 +60,22 @@ addBtns.forEach(btn=>{
         console.log(actualProduct.id)
       
         //  preguntar si el product que estoy agregando ya existe );
-       if(shoppingCartArray.includes(actualProduct)){
-        actualProduct.quantity++;
-       }else{
-        shoppingCartArray.push(actualProduct)
-       }
+
+        let existe = false
+        shoppingCartArray.forEach(libro => {
+            if (actualID == libro.id){
+                existe = true
+            }else{
+            }
+        })
+
+
+        if(existe){
+            console.log('aumentado')
+            actualProduct.quantity++
+        }else{
+            shoppingCartArray.push(actualProduct)
+        }
 
         console.log(shoppingCartArray)
 
