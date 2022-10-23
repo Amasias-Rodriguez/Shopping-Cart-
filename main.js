@@ -59,7 +59,6 @@ addBtns.forEach(btn=>{
         if(actualProduct.quantity === undefined){
             actualProduct.quantity = 1;
         }
-        console.log(actualProduct.id)
       
         //  preguntar si el product que estoy agregando ya existe );
 
@@ -79,35 +78,63 @@ addBtns.forEach(btn=>{
             shoppingCartArray.push(actualProduct)
         }
 
-        console.log(shoppingCartArray)
 
-          // agregrar el producto al arreglo del carro 
-        cartContainer.innerHTML = '';
-        cartContainer.innerHTML += `
-                <div class="cart-row">
+        console.log(shoppingCartArray)
+        // dibujar en el dom el arreglo de compras actualizado
+        drawItems()
+         // actualizar el valor total
+         getTotal()
+
+         updateNumbersOfItems()
+
+    });
+});     
+
+         function getTotal(){
+            let sumTotal
+            let total = shoppingCartArray.reduce( (sum, item)=>{
+                sumTotal = sum +item.quantity*item.YEAR
+                return sumTotal
+            } , 0);
+            totalElement.innerText = `$${total}`      
+        }
+    
+        function drawItems(){
+            cartContainer.innerHTML = '';
+            shoppingCartArray.forEach(item => {
+            cartContainer.innerHTML += 
+                `<div class="cart-row">
                     <div class="cart-item cart-column">
                         <img class="cart-item-image" src="./Images/libro.jpg" width="100" height="100">
-                        <span class="cart-item-title">${actualProduct.TITLE}</span>
+                        <span class="cart-item-title">${item.TITLE}</span>
                     </div>
-                    <span class="cart-price cart-column">$${actualProduct.YEAR}</span>
+                    <span class="cart-price cart-column">$${item.YEAR}</span>
                     <div class="cart-quantity cart-column">
-                        <input class="cart-quantity-input" min="1" type="number" value="$${actualProduct.YEAR}">
+                        <input class="cart-quantity-input" min="1" type="number" value="${item.quantity}">
                         <button class="btn btn-danger" type="button">REMOVE</button>
                     </div>
                 </div>`
+            });
+        }
 
-                // actualizar el valor total
+        function updateNumbersOfItems(){
+            let inputNumber = document.querySelectorAll('.cart-quantuty-input');
+            inputNumber = {...inputNumber}
+            inputNumber.forEach(item => {
+                item.addEventListener('click', event=>{
+                    // conseguir titulo del libro
+                    let actualBookTitle = event.target.parentElement.parentElement.childNodes [1].innerText
+                    // busco el objeto con ese titulo
 
-                total = getTotal()
-    });
-});
+                    // actualizar el numero de la propiedad quantity
 
-function getTotal(){
-    let sumTotal
-    let total = shoppingCartArray.reduce( (sum, item)=>{
-        sumTotal = sum +item.quantity*item.YEAR
-        return sumTotal
-    } , 0);
-    totalElement.innerText = `$${total}`
+                    // actualizar el precio total
+                });
+            });
+        }
 
-}
+      
+               
+   
+
+
