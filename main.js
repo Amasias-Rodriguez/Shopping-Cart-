@@ -56,7 +56,9 @@ addBtns.forEach(btn=>{
 
         // con el Id encontrar objeto actual 
         let actualProduct = productsArray.find(item => item.id == actualID)
-        actualProduct.quantity = 1;
+        if(actualProduct.quantity === undefined){
+            actualProduct.quantity = 1;
+        }
         console.log(actualProduct.id)
       
         //  preguntar si el product que estoy agregando ya existe );
