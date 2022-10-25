@@ -87,6 +87,8 @@ addBtns.forEach(btn=>{
 
          updateNumbersOfItems()
 
+         removeItems()
+
     });
 });     
 
@@ -136,7 +138,21 @@ addBtns.forEach(btn=>{
             });
         }
 
-      
+      function removeItems(){
+        let removeBtns = documents.querySelectorAll('.btn-danger');
+        removeBtns = [...removeBtns];
+        removeBtns.forEach(btn => {
+            btn.addEventListener('click', event=>{
+                // conseguir titulo del libro
+                let actualBookTitle = event.target.parentElement.parentElement.childNodes [1].innerText
+                // busco el objeto con ese titulo
+                let actualBookObject = shoppingCartArray.find(item => item.TITLE == actualBookTitle)
+                // remover el arreglo de productos de cart
+                shoppingCartArray = shoppingCartArray.filter(item => item != actualBookObject)
+                // actualizar el precio total
+            });
+        });
+      }
                
    
 
