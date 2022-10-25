@@ -124,10 +124,11 @@ addBtns.forEach(btn=>{
                 item.addEventListener('click', event=>{
                     // conseguir titulo del libro
                     let actualBookTitle = event.target.parentElement.parentElement.childNodes [1].innerText
+                    let actualBookQuantity = event.target.value;
                     // busco el objeto con ese titulo
-
+                    let actualBookObject = shoppingCartArray.find(item => item.TITLE == actualBookTitle)
                     // actualizar el numero de la propiedad quantity
-
+                    actualBookObject.quantity == actualBookQuantity;
                     // actualizar el precio total
                 });
             });
