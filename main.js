@@ -150,6 +150,9 @@ addBtns.forEach(btn=>{
                 // remover el arreglo de productos de cart
                 shoppingCartArray = shoppingCartArray.filter(item => item != actualBookObject)
                 // actualizar el precio total
+                drawItems()
+                getTotal()
+                updateNumberOfItems()
             });
         });
       }
