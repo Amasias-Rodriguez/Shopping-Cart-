@@ -117,6 +117,7 @@ addBtns.forEach(btn=>{
                     </div>
                 </div>`
             });
+            removeItems()
         }
 
         function updateNumbersOfItems(){
